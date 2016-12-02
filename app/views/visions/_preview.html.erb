@@ -8,7 +8,7 @@
 
       <div class="card-stacked <%= preview.color.gsub('_', '-') %> darken-2 white-text">
         <div class="card-content">
-          <p>I'd like to live in a world where everyone is treated equally regardless of their gender, ...</p>
+          <%= truncate preview.content, length: 100, separator: ' ' %>
         </div>
         <div class="card-action">
           <p>Read more</p>
