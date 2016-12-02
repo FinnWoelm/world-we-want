@@ -1,0 +1,69 @@
+<div id="hero" class="black white-text">
+
+  <div class="container">
+
+    <div class="section"></div>
+    <div class="section"></div>
+
+    <div class="row">
+
+      <div class="col s12 m4 l4 center-align">
+        <%= image_tag "logo.png", class: "logo responsive-img" %>
+      </div>
+      <div class="col s12 m8 l8">
+        <h3 class="no-margin-top">Envisioning the World We Want</h3>
+        <p class="flow-text">
+          There are 7 billion of us human beings.
+          All of us live together on this same planet Earth.
+          We are collecting visions for our world from people everywhere to
+          foster mutual understanding and collaboration.
+        </p>
+
+        <div class="row">
+          <div class="col s12 m6 right-align">
+            <%= link_to "Add Your Vision", new_vision_path, class: "btn-large waves-effect waves-light primary-color white-text" %>
+          </div>
+          <div class="col s12 m6 left-align">
+            <a href="#visions" class="btn-large waves-effect waves-light primary-color white-text">
+              Browse Visions
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section"></div>
+
+  </div>
+</div>
+
+<div class="white">
+  <div class="container">
+
+    <div class="section"></div>
+
+    <div class="row">
+      <div class="col s12">
+        <h3 id="visions">Visions from around the World</h3>
+      </div>
+    </div>
+
+    <div class="row no-margin-bottom">
+
+      <% @visions.each_with_index do |vision, index| %>
+
+        <%= render partial: "preview", object: vision %>
+
+        <% if index.odd? %>
+          <!-- CLEARFIX -->
+          <div class="clearfix col s12 hide-on-small-only"></div>
+        <% end %>
+
+      <% end %>
+
+    </div>
+  </div>
+
+
+  <div class="section"></div>
+</div>

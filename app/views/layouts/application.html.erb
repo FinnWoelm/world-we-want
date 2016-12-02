@@ -1,14 +1,113 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WorldWeWant</title>
+    <title>World We Want</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Material Design Icons -->
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/1.7.22/css/materialdesignicons.min.css">
   </head>
 
-  <body>
+  <% @color_scheme ||= 'red' %>
+
+  <body class="color-scheme primary-<%= @color_scheme %>">
+
+    <!-- Header -->
+    <nav id="header" class="primary-color darken-2 z-depth-1" >
+      <div class="container">
+        <div class="nav-wrapper">
+          <%= link_to root_path, class: 'brand-logo' do %>
+            <%= image_tag "logo.png", class: "logo left" %>
+            <span class="hide-on-small-only">World We Want</span>
+          <% end %>
+          <a href="#" data-activates="mobile-nav" class="button-collapse"><i class="mdi mdi-menu"></i></a>
+          <ul class="right hide-on-med-and-down">
+            <li><%= link_to new_vision_path do %>ADD YOUR VISION<% end %></li>
+            <li><a href="https://www.facebook.com/World-We-Want-1494999360516291/" target="_blank"><i class="mdi mdi-facebook"></i></a></li>
+            <li><a href="https://twitter.com/World_We_Want" target="_blank"><i class="mdi mdi-twitter"></i></a></li>
+            <li><a href="http://eepurl.com/cqZRXr" target="_blank"><i class="mdi mdi-email"></i></a></li>
+          </ul>
+          <ul class="side-nav" id="mobile-nav">
+            <li><%= link_to root_path do %><i class="mdi mdi-home"></i> Home<% end %></li>
+            <li><%= link_to new_vision_path do %><i class="mdi mdi-plus"></i>Add Your Vision<% end %></li>
+            <li><a href="https://www.facebook.com/World-We-Want-1494999360516291/" target="_blank"><i class="mdi mdi-facebook"></i> Facebook</a></li>
+            <li><a href="https://twitter.com/World_We_Want" target="_blank"><i class="mdi mdi-twitter"></i> Twitter</a></li>
+            <li><a href="http://eepurl.com/cqZRXr}" target="_blank"><i class="mdi mdi-email"></i> Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
     <%= yield %>
+
+    <!-- Footer -->
+    <div id="footer" class="grey darken-3 white-text z-depth-1" >
+      <div class="container">
+        <div class="section">
+          <div class="row">
+            <div class="col s12 m4 l4">
+              <h5>World We Want</h5>
+
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+                  <%= image_tag "logo.png", class: "logo responsive-img left" %>
+                  7 billion individuals, 1 planet Earth.
+                  We are collecting visions for our world from people everywhere.
+                </div>
+              </div>
+
+            </div>
+            <div class="col s12 m4 l4">
+              <h5>Add Your Vision</h5>
+
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+                  <%= link_to new_vision_path, class: "btn-flat waves-effect waves-light primary-color white-text with-icon" do %>
+                    <i class="mdi mdi-plus left"></i>
+                    Add Your Vision
+                  <% end %>
+                </div>
+              </div>
+
+            </div>
+            <div class="col s12 m4 l4">
+              <h5>Get Social</h5>
+
+              <div class="row">
+                <div class="col s12">
+                  <a href="https://www.facebook.com/World-We-Want-1494999360516291/" target="_blank" class="btn-flat waves-effect waves-light color-scheme-facebook with-icon">
+                    <i class="mdi mdi-facebook left"></i>
+                    Facebook
+                  </a>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col s12">
+                  <a href="https://twitter.com/World_We_Want" target="_blank" class="btn-flat waves-effect waves-light color-scheme-twitter with-icon">
+                    <i class="mdi mdi-twitter left"></i>
+                    Twitter
+                  </a>
+                </div>
+              </div>
+
+              <div class="row no-margin-bottom">
+                <div class="col s12">
+                  <a href="http://eepurl.com/cqZRXr" target="_blank" class="btn-flat waves-effect waves-light grey white-text with-icon">
+                    <i class="mdi mdi-email left"></i>
+                    Newsletter
+                  </a>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
   </body>
 </html>

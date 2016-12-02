@@ -1,0 +1,103 @@
+<div class="card vision">
+
+  <!-- Header -->
+  <div class="card-header">
+    <span class="primary-color card-title z-depth-1">
+      What does your ideal world look like?
+    </span>
+  </div>
+
+  <div class="card-description card-section with-border-bottom">
+    <p>
+      Take no more than five minutes to describe what your ideal world
+      looks like. This can be in the form of a paragraph, bullet points,
+      a poem, a haiku, a drawing, a photograph, or a mix of different
+      things. This is your vision, so do what feels like the right thing
+      to do.
+    </p>
+  </div>
+
+
+  <%= form_for vision, id: 'new_vision' do |f| %>
+    <% if vision.errors.any? %>
+      <div class="card-errors card-section with-border-bottom primary-color white-text">
+        <h2><%= pluralize(vision.errors.count, "error") %> prohibited this vision from being saved:</h2>
+
+        <ul>
+        <% vision.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <!-- Favorite color -->
+    <div class="card-description card-section with-border-bottom">
+
+      <h5>#1 Choose Your Favorite Color</h5>
+
+      <div class="row no-margin-bottom">
+        <div class="input-field col s12 m6 l4">
+          <%= f.select :color, class: "icons" do %>
+            <% Vision.colors.keys.to_a.each do |color| %>
+              <%= content_tag(:option, color.humanize, value: color, class: "left circle #{color.gsub('_', '-')} darken-2", data: {icon: asset_path('empty-1x1.png') }) %>
+            <% end %>
+          <% end %>
+          <label>Favorite Color</label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image -->
+    <div class="card-section with-border-bottom left-align">
+      <div class="row">
+        <div class="col s12">
+
+          <h5>#2 Upload an Image (Optional)</h5>
+
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Vision Image</span>
+              <%= f.file_field :image %>
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Text -->
+    <div class="card-content">
+
+      <div class="row">
+        <div class="col s12">
+
+          <h5>#3 Describe Your Ideal World</h5>
+
+          <div class="row no-margin-bottom">
+            <div class="input-field col s12">
+              <%= f.text_area :content, class: "materialize-textarea" %>
+              <%= f.label :content, "Describe Your Ideal World" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Publish -->
+    <div class="card-action">
+      <div class="row no-margin-bottom">
+        <div class="col s12 right-align">
+          <button class="btn waves-effect waves-light primary-color with-icon" type="submit" name="action">
+            <i class="mdi mdi-send left"></i>
+            Publish
+          </button>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>
