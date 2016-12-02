@@ -25,10 +25,6 @@ class VisionsController < ApplicationController
     @vision = Vision.new
   end
 
-  # GET /visions/1/edit
-  def edit
-  end
-
   # POST /visions
   def create
     @vision = Vision.new(vision_params)
@@ -38,21 +34,6 @@ class VisionsController < ApplicationController
     else
       render :new
     end
-  end
-
-  # PATCH/PUT /visions/1
-  def update
-    if @vision.update(vision_params)
-      redirect_to @vision, notice: 'Vision was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /visions/1
-  def destroy
-    @vision.destroy
-    redirect_to visions_url, notice: 'Vision was successfully destroyed.'
   end
 
   private
