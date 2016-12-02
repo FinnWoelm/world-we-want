@@ -8,7 +8,7 @@ class VisionsController < ApplicationController
 
   # GET /visions/1
   def show
-    @color_scheme = @vision.color
+    @color_scheme = @vision.color.gsub('_', '-')
 
     @next_vision =
       Vision.find_next_vision(@vision.id)

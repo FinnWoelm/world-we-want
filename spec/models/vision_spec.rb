@@ -52,6 +52,22 @@ RSpec.describe Vision, type: :model do
 
   end
 
+  describe "#clean_paperclip_errors" do
+
+    context "when the file is not an image" do
+
+      before do
+        vision.image = File.new("#{Rails.root}/spec/support/fixtures/sample.txt")
+      end
+
+      it "shows only one error" do
+        expect(vision).not_to be_valid
+        expect(vision.errors.count).to be 1
+      end
+
+    end
+  end
+
   describe ".find_random_vision" do
 
     before do

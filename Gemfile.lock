@@ -217,6 +217,7 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   materialize-sass
+  nokogiri (~> 1.6)
   paperclip (~> 5.0.0)
   pg (~> 0.18)
   poltergeist (~> 1.11)

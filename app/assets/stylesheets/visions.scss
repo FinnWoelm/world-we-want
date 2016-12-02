@@ -25,17 +25,27 @@
 }
 
 .vision {
+
+  .card-image {
+    line-height: 0;
+    margin-top: -36px;
+  }
+
   .card-image img {
     width: auto !important;
     position: static !important;
     display: inline-block !important;
   }
 
-  .card-image, .card-description {
+  .card-image, .card-section.with-border-bottom {
     border-bottom: 1px solid rgba(160,160,160,0.2);
   }
 
-  .card-description {
+  .card-section.with-border-top {
+    border-top: 1px solid rgba(160,160,160,0.2);
+  }
+
+  .card-description, .card-section {
     padding: 20px;
     border-radius: 0 0 2px 2px;
   }
@@ -44,6 +54,7 @@
     position: relative;
     top: -10px;
     left: -10px;
+    z-index: 10;
   }
 
   .card-header .card-title {

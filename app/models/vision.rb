@@ -9,6 +9,14 @@ class Vision < ApplicationRecord
   # Validations
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
   validates_attachment_size :image, less_than: 5.megabytes
+  validates_presence_of :content
+
+  after_validation :clean_paperclip_errors
+
+  # cleans duplicate errors
+  def clean_paperclip_errors
+    errors.delete(:image)
+  end
 
   # Class Methods
 

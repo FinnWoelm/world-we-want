@@ -19,6 +19,10 @@ $(document).on 'turbolinks:load', ->
   # Autoresize textfields
   $('.materialize-textarea').trigger('autoresize')
 
+  # Use Materialize dropdown
+  $('select').material_select()
+
+
 
 ##############################################################
 ## BEFORE CACHE ##############################################

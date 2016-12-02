@@ -6,6 +6,45 @@
 
 @import "visions";
 
+// Add support for Gray and Blue-Gray
+@each $color_type, $color_value in $grey {
+  @if $color_type == "base" {
+    .gray {
+      background-color: $color_value !important;
+    }
+    .gray-text {
+      color: $color_value !important;
+    }
+  }
+  @else {
+    .gray.#{$color_type} {
+      background-color: $color_value !important;
+    }
+    .gray-text.text-#{$color_type} {
+      color: $color_value !important;
+    }
+  }
+}
+
+@each $color_type, $color_value in $blue-grey {
+  @if $color_type == "base" {
+    .blue-gray {
+      background-color: $color_value !important;
+    }
+    .blue-gray-text {
+      color: $color_value !important;
+    }
+  }
+  @else {
+    .blue-gray.#{$color_type} {
+      background-color: $color_value !important;
+    }
+    .blue-gray-text.text-#{$color_type} {
+      color: $color_value !important;
+    }
+  }
+}
+
 .color-scheme {
 
   @each $color_name, $color in $colors {
@@ -24,6 +63,23 @@
 
   }
 
+  &.primary-gray {
+
+    @extend .gray, .lighten-4;
+
+    .primary-color {
+      @extend .gray, .darken-2;
+    }
+  }
+
+  &.primary-blue-gray {
+
+    @extend .blue-gray, .lighten-4;
+
+    .primary-color {
+      @extend .blue-gray, .darken-2;
+    }
+  }
 }
 
 #hero img.logo {
@@ -72,8 +128,8 @@
   @extend .white-text;
 }
 
-a.btn.with-icon,
-a.btn-flat.with-icon {
+.btn.with-icon,
+.btn-flat.with-icon {
 
   padding-left: 10px !important;
   padding-right: 10px !important;
