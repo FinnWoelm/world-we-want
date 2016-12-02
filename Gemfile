@@ -20,8 +20,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -40,6 +38,22 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+group :test do
+  # Better testing
+  gem 'rspec-rails', '~> 3.5'
+  # Automatically generate testing models
+  gem 'factory_girl_rails', '~> 4.7'
+  # Quickly generate fake names, urls, etc
+  gem 'faker', '~> 1.6'
+  # BDD testing
+  gem 'capybara', '~> 2.7'
+  gem 'poltergeist', '~> 1.11'
+  # A few extra testing matchers
+  gem 'shoulda-matchers', '~> 3.1', require: false
+  # Cleans the test database after every test
+  gem 'database_cleaner', '~> 1.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
