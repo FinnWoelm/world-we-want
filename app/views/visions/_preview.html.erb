@@ -6,7 +6,7 @@
         <div class="card-image" style="background-image: url(<%= preview.image.url %>);"></div>
       <% end %>
 
-      <div class="card-stacked indigo darken-2 white-text">
+      <div class="card-stacked <%= preview.color.gsub('_', '-') %> darken-2 white-text">
         <div class="card-content">
           <p>I'd like to live in a world where everyone is treated equally regardless of their gender, ...</p>
         </div>
