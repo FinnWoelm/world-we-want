@@ -8,6 +8,13 @@ RSpec.describe Vision, type: :model do
     is_expected.to be_valid
   end
 
+  describe "accessors" do
+    it {
+      is_expected.to define_enum_for(:color).
+        with([:red, :pink, :purple, :deep_purple, :indigo, :blue, :light_blue, :cyan, :teal, :green, :light_green, :lime, :yellow, :amber, :orange, :deep_orange, :brown, :gray, :blue_gray])
+    }
+  end
+
   describe "associations" do
     it { is_expected.to have_attached_file(:image) }
   end

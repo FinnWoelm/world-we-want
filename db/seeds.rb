@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 visions = Vision.create(
-  color: "indigo",
+  color: :indigo,
   content:
     "I'd like to live in a world where everyone is treated equally regardless of their gender, race, sexual orientation, religious belief or disability.
 
