@@ -1,0 +1,168 @@
+@import "materialize/components/color";
+// Override variables
+//$primary-color: color("blue", "lighten-2") !default;
+//$secondary-color: color("yellow", "base") !default;
+@import "materialize";
+
+@import "visions";
+
+// Add support for Gray and Blue-Gray
+@each $color_type, $color_value in $grey {
+  @if $color_type == "base" {
+    .gray {
+      background-color: $color_value !important;
+    }
+    .gray-text {
+      color: $color_value !important;
+    }
+  }
+  @else {
+    .gray.#{$color_type} {
+      background-color: $color_value !important;
+    }
+    .gray-text.text-#{$color_type} {
+      color: $color_value !important;
+    }
+  }
+}
+
+@each $color_type, $color_value in $blue-grey {
+  @if $color_type == "base" {
+    .blue-gray {
+      background-color: $color_value !important;
+    }
+    .blue-gray-text {
+      color: $color_value !important;
+    }
+  }
+  @else {
+    .blue-gray.#{$color_type} {
+      background-color: $color_value !important;
+    }
+    .blue-gray-text.text-#{$color_type} {
+      color: $color_value !important;
+    }
+  }
+}
+
+.color-scheme {
+
+  @each $color_name, $color in $colors {
+
+    @if $color_name != "shades" {
+
+      &.primary-#{$color_name} {
+
+        @extend .#{$color_name}, .lighten-4;
+
+        .primary-color {
+          @extend .#{$color_name}, .darken-2;
+        }
+      }
+    }
+
+  }
+
+  &.primary-gray {
+
+    @extend .gray, .lighten-4;
+
+    .primary-color {
+      @extend .gray, .darken-2;
+    }
+  }
+
+  &.primary-blue-gray {
+
+    @extend .blue-gray, .lighten-4;
+
+    .primary-color {
+      @extend .blue-gray, .darken-2;
+    }
+  }
+}
+
+#hero img.logo {
+  @media #{$small-and-down} {
+    max-width: 250px;
+  }
+}
+
+#header .brand-logo img.logo{
+  height: 38px;
+  width: auto;
+  margin-top: 13px;
+  margin-right: 13px;
+
+  @media #{$small-and-down} {
+    height: 34px;
+    margin-top: 11px;
+    margin-right: 11px;
+  }
+}
+
+#footer .row:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+#footer img.logo {
+  margin-right: 20px;
+  max-width: 100px;
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px !important;
+}
+
+.no-margin-top {
+  margin-top: 0px !important;
+}
+
+.color-scheme-facebook {
+  background-color: #3B5998 !important;
+  @extend .white-text;
+}
+
+.color-scheme-twitter {
+  background-color: #1DA1F2 !important;
+  @extend .white-text;
+}
+
+.btn.with-icon,
+.btn-flat.with-icon {
+
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+
+  i {
+
+    position: static !important;
+    width: 30px;
+    border-color: rgba(255,255,255,.5);
+    border-style: solid;
+    border-width: 0px;
+
+    &.left {
+      border-right-width: 1px;
+      padding-right: 10px;
+      margin-right: 10px !important;
+    }
+
+    &.right {
+      border-left-width: 1px;
+      padding-left: 10px;
+      margin-left: 10px !important;
+    }
+
+  }
+}
+
+@media #{$small-and-down} {
+  a.btn, a.btn-flat {
+    width: 100%;
+  }
+
+  .row .col.s12:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}

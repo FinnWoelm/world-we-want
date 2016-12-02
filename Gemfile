@@ -16,12 +16,22 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+# Use Paperclip for attachments
+gem "paperclip", "~> 5.0.0"
+
+# Use Materialize
+gem 'materialize-sass'
+
+# Nokogiri for parsing fields with errors
+gem "nokogiri", '~> 1.6'
+
+# For simple-to-use environment variables
+gem "figaro", '~> 1.1'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -40,6 +50,31 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # For deployment
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+  gem 'capistrano-figaro-yml', '~> 1.0.2', require: false
+  gem 'capistrano-rails-console', '~> 1.0.2', require: false
+end
+
+group :test do
+  # Better testing
+  gem 'rspec-rails', '~> 3.5'
+  # Automatically generate testing models
+  gem 'factory_girl_rails', '~> 4.7'
+  # Quickly generate fake names, urls, etc
+  gem 'faker', '~> 1.6'
+  # BDD testing
+  gem 'capybara', '~> 2.7'
+  gem 'poltergeist', '~> 1.11'
+  # A few extra testing matchers
+  gem 'shoulda-matchers', '~> 3.1', require: false
+  # Cleans the test database after every test
+  gem 'database_cleaner', '~> 1.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
