@@ -1,19 +1,61 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
 
-<p>
-  <strong>Content:</strong>
-  <%= @vision.content %>
-</p>
+  <div class="section"></div>
 
-<p>
-  <strong>Image:</strong>
-  <%= @vision.image %>
-</p>
+  <div class="row">
+    <div class="col s12">
+      <div class="card vision">
 
-<p>
-  <strong>Color:</strong>
-  <%= @vision.color %>
-</p>
+        <!-- Header -->
+        <div class="card-header">
+          <span class="primary-color card-title z-depth-1">
+            Vision #<%= @vision.id %>
+          </span>
+        </div>
 
-<%= link_to 'Edit', edit_vision_path(@vision) %> |
-<%= link_to 'Back', visions_path %>
+        <!-- Image -->
+        <% if @vision.image.present? %>
+          <div class="card-image center-align">
+            <%= image_tag @vision.image.url, class: 'responsive-img' %>
+          </div>
+        <% end %>
+
+        <!-- Text -->
+        <div class="card-content">
+          <%= simple_format h(@vision.content) %>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="white z-depth-1">
+  <div class="section"></div>
+  <div class="container">
+      <div class="row no-margin-bottom">
+        <div class="col s12 m4 l4 left-align">
+          <%= link_to @previous_vision || "#", class: "waves-effect waves-light primary-color btn with-icon #{'disabled' unless @previous_vision}" do %>
+            <i class="mdi mdi-chevron-left left"></i>
+            Previous
+          <% end %>
+        </div>
+        <div class="col s12 m4 l4 center-align">
+          <%= link_to @random_vision, class: "waves-effect waves-light primary-color btn with-icon" do %>
+            <i class="mdi mdi-autorenew left"></i>
+            Random
+          <% end %>
+        </div>
+        <div class="col s12 m4 l4 right-align">
+          <%= link_to @next_vision || "#", class: "waves-effect waves-light primary-color btn with-icon #{'disabled' unless @next_vision}" do %>
+            <i class="mdi mdi-chevron-right right hide-on-small-only"></i>
+            <i class="mdi mdi-chevron-right left hide-on-med-and-up"></i>
+            Next
+          <% end %>
+        </div>
+      </div>
+  </div>
+  <div class="section"></div>
+</div>

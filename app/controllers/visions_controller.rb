@@ -3,11 +3,21 @@ class VisionsController < ApplicationController
 
   # GET /visions
   def index
-    @visions = Vision.all
+    @visions = Vision.order(id: :desc).all
   end
 
   # GET /visions/1
   def show
+    @color_scheme = @vision.color
+
+    @next_vision =
+      Vision.find_next_vision(@vision.id)
+
+    @previous_vision =
+      Vision.find_previous_vision(@vision.id)
+
+    @random_vision =
+      Vision.find_random_vision(@vision.id)
   end
 
   # GET /visions/new
