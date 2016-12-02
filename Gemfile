@@ -25,6 +25,9 @@ gem 'materialize-sass'
 # Nokogiri for parsing fields with errors
 gem "nokogiri", '~> 1.6'
 
+# For simple-to-use environment variables
+gem "figaro", '~> 1.1'
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -54,6 +57,8 @@ group :development do
   gem 'capistrano-rails',   require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano3-puma',   require: false
+  gem 'capistrano-figaro-yml', '~> 1.0.2', require: false
+  gem 'capistrano-rails-console', '~> 1.0.2', require: false
 end
 
 group :test do
