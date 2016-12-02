@@ -1,3 +1,25 @@
-// Place all the styles related to the visions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.vision_preview {
+
+  .card-image {
+    max-width: 25%;
+    width: 25%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  .card-action {
+    padding: 10px 20px;
+    border-top: 1px solid rgba(255, 255, 255, .5);
+
+    p {
+      margin: 0px;
+      text-transform: uppercase;
+    }
+  }
+
+  &:hover, &:focus {
+    @extend .z-depth-5;
+  }
+
+}

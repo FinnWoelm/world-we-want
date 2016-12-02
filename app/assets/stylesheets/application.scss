@@ -3,3 +3,29 @@
 //$primary-color: color("blue", "lighten-2") !default;
 //$secondary-color: color("yellow", "base") !default;
 @import "materialize";
+
+@import "visions";
+
+#hero img.logo {
+  @media #{$small-and-down} {
+    max-width: 250px;
+  }
+}
+
+.no-margin-bottom {
+  margin-bottom: 0px !important;
+}
+
+.no-margin-top {
+  margin-top: 0px !important;
+}
+
+@media #{$small-and-down} {
+  a.btn, a.btn-flat {
+    width: 100%;
+  }
+
+  .row .col.s12:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+}
