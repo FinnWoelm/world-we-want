@@ -9,6 +9,7 @@ require 'rspec/rails'
 require "capybara/rspec"
 require 'faker'
 require 'shoulda/matchers'
+require "paperclip/matchers"
 require 'database_cleaner'
 
 # Shoulda Matchers: https://www.sitepoint.com/learn-the-first-best-practices-for-rails-and-rspec/
@@ -54,6 +55,9 @@ RSpec.configure do |config|
   # Randomize order in which tests are run
   config.order = "random"
 
+  # Include Paperclip matchers
+  config.include Paperclip::Shoulda::Matchers
+
   # RSpec Rails can automatically mix in different behaviours to your tests
   # based on their file location, for example enabling you to call `get` and
   # `post` in specs under `spec/controllers`.
@@ -76,5 +80,5 @@ RSpec.configure do |config|
 
   #add this line at the bottom of the config section
   #it saves us time when using FactoryGirl methods.
-  config.include FactoryGirl::Syntax::Methods  
+  config.include FactoryGirl::Syntax::Methods
 end
