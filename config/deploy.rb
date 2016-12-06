@@ -1,5 +1,5 @@
 # Change these
-server '162.243.202.102', port: 22, roles: [:web, :app, :db], primary: true
+server 'world-we-want.com', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:fwoelm/world-we-want.git'
 set :application,     'world-we-want'
