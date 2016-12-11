@@ -1,28 +1,28 @@
 require 'rails_helper.rb'
 
-feature 'Vision' do
+feature 'Identity' do
 
-  scenario 'User can add a vision' do
+  scenario 'User can add their identity' do
     # given_i_am_on_the_homepage
     visit root_path
 
-    # when_i_add_a_new_vision
+    # and I have added a new vision
     click_link "Add Your Vision", match: :first
     fill_in 'Describe Your Ideal World', with: "I want all humans to be happy"
-
-    # and_choose_my_favorite_color 'Light blue'
-    select('Light blue', from: 'vision_color')
     click_button 'Publish'
 
-    # and I skip adding identities
-    click_link 'Skip'
+    # when I set some identities
+    fill_in "Political Affiliation", with: "The Party"
+    fill_in "Religious Affiliation", with: "The Religion"
+    fill_in "Where are you from?", with: "Germany"
+    click_button 'Submit Identities'
 
     # then_i_should_be_redirected_to_my_vision
     expect(page).to have_current_path(vision_path(Vision.last))
     expect(page).to have_content("I want all humans to be happy")
 
-    # and_the_color_scheme_of_the_page_should_be 'light-blue'
-    expect(page).to have_css('body.color-scheme.primary-light-blue')
+    # and my identities should be shown
+    expect(page).to have_content("Germany")
   end
 
 end
