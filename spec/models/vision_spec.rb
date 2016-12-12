@@ -13,6 +13,7 @@ RSpec.describe Vision, type: :model do
       is_expected.to define_enum_for(:color).
         with([:red, :pink, :purple, :deep_purple, :indigo, :blue, :light_blue, :cyan, :teal, :green, :light_green, :lime, :yellow, :amber, :orange, :deep_orange, :brown, :gray, :blue_gray])
     }
+    it { is_expected.to have_one(:identity).dependent(true) }
   end
 
   describe "associations" do

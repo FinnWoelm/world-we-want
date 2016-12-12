@@ -1,0 +1,57 @@
+<%= form_for(identity) do |f| %>
+  <% if identity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(identity.errors.count, "error") %> prohibited this identity from being saved:</h2>
+
+      <ul>
+      <% identity.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :political_affiliation %>
+    <%= f.text_field :political_affiliation %>
+  </div>
+
+  <div class="field">
+    <%= f.label :religious_affiliation %>
+    <%= f.text_field :religious_affiliation %>
+  </div>
+
+  <div class="field">
+    <%= f.label :age %>
+    <%= f.number_field :age %>
+  </div>
+
+  <div class="field">
+    <%= f.label :gender %>
+    <%= f.text_field :gender %>
+  </div>
+
+  <div class="field">
+    <%= f.label :home_country %>
+    <%= f.text_field :home_country %>
+  </div>
+
+  <div class="field">
+    <%= f.label :ethnicity %>
+    <%= f.text_field :ethnicity %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profession %>
+    <%= f.text_field :profession %>
+  </div>
+
+  <div class="field">
+    <%= f.label :other %>
+    <%= f.text_field :other %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

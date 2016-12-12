@@ -2,6 +2,7 @@ class Vision < ApplicationRecord
 
   # Associations
   has_attached_file :image, styles: { thumb: "150x150>" }, default_url: "/images/:style/missing.png"
+  has_one :identity, dependent: :destroy
 
   # # Accessors
   enum color: [:red, :pink, :purple, :deep_purple, :indigo, :blue, :light_blue, :cyan, :teal, :green, :light_green, :lime, :yellow, :amber, :orange, :deep_orange, :brown, :gray, :blue_gray]

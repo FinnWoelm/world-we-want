@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :identities, only: [:new, :create]
   resources :visions, only: [:show, :new, :create]
 
   root 'visions#index'
