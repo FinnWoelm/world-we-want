@@ -27,6 +27,21 @@ RSpec.describe Vision, type: :model do
     it { is_expected.to validate_attachment_size(:image).less_than(5.megabytes) }
   end
 
+  describe "callbacks" do
+    context "before_create" do
+      after { vision.save }
+      it { expect(vision).to receive(:set_ID_token_expiration) }
+    end
+
+    context "after_create" do
+      before { vision.save }
+
+      it "has set id_token" do
+        expect(vision.id_token).not_to be_nil
+      end
+    end
+  end
+
   describe ".find_next_vision" do
 
     let!(:vision_id_zero) { create(:vision) }
@@ -66,6 +81,14 @@ RSpec.describe Vision, type: :model do
         expect(vision.errors.count).to be 1
       end
 
+    end
+  end
+
+  describe "#set_ID_token_expiration" do
+
+    it "sets the expiration to 24 hours from now" do
+      vision.send(:set_ID_token_expiration)
+      expect(vision.id_token_expiration).to be_within(1.second).of(Time.zone.now + 24.hours)
     end
   end
 
