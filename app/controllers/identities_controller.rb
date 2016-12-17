@@ -2,6 +2,7 @@ class IdentitiesController < ApplicationController
 
   # GET /identities/new
   def new
+    @vision = Vision.first
     @identity = Identity.new
   end
 
@@ -19,6 +20,6 @@ class IdentitiesController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def identity_params
-      params.require(:identity).permit(:political_affiliation, :religious_affiliation, :age, :gender, :home_country, :ethnicity, :profession, :other)
+      params.require(:identity).permit(:vision, :political_affiliation, :religious_affiliation, :age, :gender, :home_country, :ethnicity, :profession, :other)
     end
 end

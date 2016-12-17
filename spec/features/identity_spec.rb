@@ -12,8 +12,8 @@ feature 'Identity' do
     click_button 'Publish'
 
     # when I set some identities
-    fill_in "Political Affiliation", with: "The Party"
-    fill_in "Religious Affiliation", with: "The Religion"
+    fill_in "Political affiliation", with: "The Party"
+    fill_in "Religious affiliation", with: "The Religion"
     fill_in "Where are you from?", with: "Germany"
     click_button 'Submit Identities'
 

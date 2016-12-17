@@ -1,0 +1,27 @@
+div.card {
+
+  .card-header {
+    position: relative;
+    top: -10px;
+    left: -10px;
+    z-index: 10;
+  }
+
+  .card-header .card-title {
+    color: white;
+    padding: 5px 10px;
+  }
+
+  .card-section.with-border-bottom {
+    border-bottom: 1px solid rgba(160,160,160,0.2);
+  }
+
+  .card-section.with-border-top {
+    border-top: 1px solid rgba(160,160,160,0.2);
+  }
+
+  .card-section {
+    padding: 20px;
+    border-radius: 0 0 2px 2px;
+  }
+}

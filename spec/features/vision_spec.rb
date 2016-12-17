@@ -15,7 +15,7 @@ feature 'Vision' do
     click_button 'Publish'
 
     # and I skip adding identities
-    click_link 'Skip'
+    click_link 'Skip to Vision'
 
     # then_i_should_be_redirected_to_my_vision
     expect(page).to have_current_path(vision_path(Vision.last))
