@@ -92,6 +92,23 @@ RSpec.describe Vision, type: :model do
     end
   end
 
+  describe "#new_identity_path" do
+
+    before do
+      vision.id = 5
+      vision.id_token = "523BE6ONM"
+    end
+
+    it "contains the vision ID: 5" do
+      expect(vision.new_identity_path).to include("id=5")
+    end
+
+    it "contains the vision token: 523BE6ONM" do
+      expect(vision.new_identity_path).to include("token=523BE6ONM")
+    end
+
+  end
+
   describe ".find_random_vision" do
 
     before do

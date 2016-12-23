@@ -21,6 +21,11 @@ class Vision < ApplicationRecord
     errors.delete(:image)
   end
 
+  # returns the path for adding identity information
+  def new_identity_path
+    Rails.application.routes.url_helpers.new_identity_path(:id => id, :token => id_token)
+  end
+
   # Class Methods
 
   # finds the next vision (the one with ID just before this one)

@@ -30,7 +30,7 @@ class VisionsController < ApplicationController
     @vision = Vision.new(vision_params)
 
     if @vision.save
-      redirect_to @vision, notice: 'Vision was successfully created.'
+      redirect_to @vision.new_identity_path
     else
       render :new
     end
