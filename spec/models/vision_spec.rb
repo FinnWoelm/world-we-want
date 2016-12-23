@@ -177,4 +177,39 @@ RSpec.describe Vision, type: :model do
     end
 
   end
+
+  describe "#verify_id_token" do
+
+    before { vision.save }
+
+    let(:verified_vision) { vision.verify_id_token(token) }
+    let(:token) { vision.id_token }
+
+    context "when token has expired" do
+
+      before do
+        vision.id_token_expiration = Time.zone.now - 25.hours
+      end
+
+      it "returns nil" do
+        expect(verified_vision).to eq Vision.none
+      end
+    end
+
+    context "when token and ID do not match" do
+
+      let(:token) { vision.id_token + "abcabc" }
+
+      it "returns nil" do
+        expect(verified_vision).to eq Vision.none
+      end
+    end
+
+    context "when token and ID match" do
+      it "returns vision of corresponding ID" do
+        expect(verified_vision).to be vision
+      end
+    end
+
+  end
 end

@@ -26,6 +26,15 @@ class Vision < ApplicationRecord
     Rails.application.routes.url_helpers.new_identity_path(:id => id, :token => id_token)
   end
 
+  # verifies the identity token against the database
+  def verify_id_token id_token
+    if id_token == self.id_token and Time.zone.now <= self.id_token_expiration
+      self
+    else
+      Vision.none
+    end
+  end
+
   # Class Methods
 
   # finds the next vision (the one with ID just before this one)

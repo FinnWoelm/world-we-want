@@ -2,8 +2,8 @@ class IdentitiesController < ApplicationController
 
   # GET /identities/new
   def new
-    @vision = Vision.first
-    @identity = Identity.new
+    @vision = Vision.find(params[:id]).verify_id_token(params[:token])
+    @identity = Identity.new if @vision.present?
   end
 
   # POST /identities
