@@ -14,8 +14,8 @@ feature 'Identity' do
     # when I set some identities
     fill_in "Political affiliation", with: "The Party"
     fill_in "Religious affiliation", with: "The Religion"
-    fill_in "Where are you from?", with: "Germany"
-    click_button 'Submit Identities'
+    fill_in "Home country", with: "Germany"
+    click_button 'Save'
 
     # then_i_should_be_redirected_to_my_vision
     expect(page).to have_current_path(vision_path(Vision.last))

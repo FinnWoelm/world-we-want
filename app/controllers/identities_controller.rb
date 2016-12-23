@@ -4,15 +4,18 @@ class IdentitiesController < ApplicationController
   def new
     @vision = Vision.find(params[:id]).verify_id_token(params[:token])
     @identity = Identity.new if @vision.present?
+    @color_scheme = @vision.color.gsub('_', '-') if @vision.present?
   end
 
   # POST /identities
   def create
-    @identity = Identity.new(identity_params)
+    @vision = Vision.find(params[:id]).verify_id_token(params[:token])
+    @identity = Identity.new(identity_params.merge(:vision => @vision)) if @vision.present?
 
-    if @identity.save
-      redirect_to @identity, notice: 'Identity was successfully created.'
+    if @identity and @identity.save
+      redirect_to @vision
     else
+      @color_scheme = @vision.color.gsub('_', '-') if @vision.present?
       render :new
     end
   end
@@ -20,6 +23,6 @@ class IdentitiesController < ApplicationController
   private
     # Only allow a trusted parameter "white list" through.
     def identity_params
-      params.require(:identity).permit(:vision, :political_affiliation, :religious_affiliation, :age, :gender, :home_country, :ethnicity, :profession, :other)
+      params.require(:identity).permit(:political_affiliation, :religious_affiliation, :age, :gender, :home_country, :ethnicity, :profession, :other)
     end
 end
