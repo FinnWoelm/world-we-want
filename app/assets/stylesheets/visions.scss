@@ -37,28 +37,12 @@
     display: inline-block !important;
   }
 
-  .card-image, .card-section.with-border-bottom {
+  .card-image {
     border-bottom: 1px solid rgba(160,160,160,0.2);
   }
 
-  .card-section.with-border-top {
-    border-top: 1px solid rgba(160,160,160,0.2);
-  }
-
-  .card-description, .card-section {
+  .card-description {
     padding: 20px;
     border-radius: 0 0 2px 2px;
-  }
-
-  .card-header {
-    position: relative;
-    top: -10px;
-    left: -10px;
-    z-index: 10;
-  }
-
-  .card-header .card-title {
-    color: white;
-    padding: 5px 10px;
   }
 }

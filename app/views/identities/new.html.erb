@@ -1,0 +1,22 @@
+<div class="container">
+
+  <div class="section"></div>
+
+  <div class="row">
+    <div class="col s12">
+
+      <% if @identity %>
+
+        <%= render 'form', identity: @identity, vision: @vision %>
+
+      <% else %>
+
+        <%= render 'error' %>
+
+      <% end %>
+
+    </div>
+  </div>
+
+
+</div>

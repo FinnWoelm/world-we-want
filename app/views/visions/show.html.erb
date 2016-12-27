@@ -20,8 +20,18 @@
           </div>
         <% end %>
 
+        <!-- Identity Chips -->
+        <% if @vision.identity.present? %>
+          <div class="card-chips card-section">
+
+            <%= render @vision.identity %>
+
+          </div>
+        <% end %>
+
         <!-- Text -->
         <div class="card-content">
+
           <%= simple_format h(@vision.content) %>
         </div>
 

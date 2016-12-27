@@ -1,0 +1,15 @@
+<%
+  attributes_to_render = [:political_affiliation, :religious_affiliation, :age, :gender, :home_country, :ethnicity, :profession, :other]
+
+%>
+
+<% attributes_to_render.each do |key| %>
+
+  <% if identity.send(key).present? %>
+    <div class="chip primary-color darken-2 white-text tooltipped" data-position="bottom" data-delay="50" data-tooltip="<%= key.to_s.titlecase %>">
+      <%= icon_for_identity_attribute(key) %>
+      <%= identity.send(key) %>
+    </div>
+  <% end %>
+
+<% end %>
