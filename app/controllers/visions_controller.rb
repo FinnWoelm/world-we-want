@@ -30,7 +30,7 @@ class VisionsController < ApplicationController
     @vision = Vision.new(vision_params)
 
     if @vision.save
-      redirect_to @vision, notice: 'Vision was successfully created.'
+      redirect_to @vision.new_identity_path
     else
       render :new
     end
@@ -39,7 +39,7 @@ class VisionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_vision
-      @vision = Vision.find(params[:id])
+      @vision = Vision.includes(:identity).find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

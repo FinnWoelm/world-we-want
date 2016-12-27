@@ -5,6 +5,7 @@
 @import "materialize";
 
 @import "visions";
+@import "card";
 
 // Add support for Gray and Blue-Gray
 @each $color_type, $color_value in $grey {

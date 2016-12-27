@@ -10,10 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161202143632) do
+ActiveRecord::Schema.define(version: 20161212070532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "identities", force: :cascade do |t|
+    t.integer  "vision_id"
+    t.string   "political_affiliation"
+    t.string   "religious_affiliation"
+    t.integer  "age"
+    t.string   "gender"
+    t.string   "home_country"
+    t.string   "ethnicity"
+    t.string   "profession"
+    t.string   "other"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.index ["vision_id"], name: "index_identities_on_vision_id", using: :btree
+  end
 
   create_table "visions", force: :cascade do |t|
     t.text     "content"
@@ -21,9 +36,12 @@ ActiveRecord::Schema.define(version: 20161202143632) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
-    t.integer  "color",              default: 0
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.integer  "color",               default: 0
+    t.string   "id_token"
+    t.datetime "id_token_expiration"
+    t.index ["id_token"], name: "index_visions_on_id_token", unique: true, using: :btree
   end
 
 end

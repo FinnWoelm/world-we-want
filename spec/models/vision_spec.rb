@@ -13,6 +13,7 @@ RSpec.describe Vision, type: :model do
       is_expected.to define_enum_for(:color).
         with([:red, :pink, :purple, :deep_purple, :indigo, :blue, :light_blue, :cyan, :teal, :green, :light_green, :lime, :yellow, :amber, :orange, :deep_orange, :brown, :gray, :blue_gray])
     }
+    it { is_expected.to have_one(:identity).dependent(true) }
   end
 
   describe "associations" do
@@ -24,6 +25,21 @@ RSpec.describe Vision, type: :model do
         allowing('image/png', 'image/gif', 'image/jpg').
         rejecting('text/plain', 'text/xml') }
     it { is_expected.to validate_attachment_size(:image).less_than(5.megabytes) }
+  end
+
+  describe "callbacks" do
+    context "before_create" do
+      after { vision.save }
+      it { expect(vision).to receive(:set_ID_token_expiration) }
+    end
+
+    context "after_create" do
+      before { vision.save }
+
+      it "has set id_token" do
+        expect(vision.id_token).not_to be_nil
+      end
+    end
   end
 
   describe ".find_next_vision" do
@@ -66,6 +82,31 @@ RSpec.describe Vision, type: :model do
       end
 
     end
+  end
+
+  describe "#set_ID_token_expiration" do
+
+    it "sets the expiration to 24 hours from now" do
+      vision.send(:set_ID_token_expiration)
+      expect(vision.id_token_expiration).to be_within(1.second).of(Time.zone.now + 24.hours)
+    end
+  end
+
+  describe "#new_identity_path" do
+
+    before do
+      vision.id = 5
+      vision.id_token = "523BE6ONM"
+    end
+
+    it "contains the vision ID: 5" do
+      expect(vision.new_identity_path).to include("id=5")
+    end
+
+    it "contains the vision token: 523BE6ONM" do
+      expect(vision.new_identity_path).to include("token=523BE6ONM")
+    end
+
   end
 
   describe ".find_random_vision" do
@@ -133,6 +174,41 @@ RSpec.describe Vision, type: :model do
       previous_vision = Vision.find_previous_vision(vision_id_two.id)
       expect(previous_vision).not_to be_a Vision
       expect(previous_vision).to be nil
+    end
+
+  end
+
+  describe "#verify_id_token" do
+
+    before { vision.save }
+
+    let(:verified_vision) { vision.verify_id_token(token) }
+    let(:token) { vision.id_token }
+
+    context "when token has expired" do
+
+      before do
+        vision.id_token_expiration = Time.zone.now - 25.hours
+      end
+
+      it "returns nil" do
+        expect(verified_vision).to eq Vision.none
+      end
+    end
+
+    context "when token and ID do not match" do
+
+      let(:token) { vision.id_token + "abcabc" }
+
+      it "returns nil" do
+        expect(verified_vision).to eq Vision.none
+      end
+    end
+
+    context "when token and ID match" do
+      it "returns vision of corresponding ID" do
+        expect(verified_vision).to be vision
+      end
     end
 
   end
